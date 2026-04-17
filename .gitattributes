@@ -1,0 +1,23 @@
+# Normalize line endings to LF for all text files on checkout.
+# This prevents CRLF/LF mixing that breaks TOML parsers and shell scripts on Linux CI.
+
+*           text=auto eol=lf
+
+*.py        text eol=lf
+*.toml      text eol=lf
+*.yml       text eol=lf
+*.yaml      text eol=lf
+*.md        text eol=lf
+*.xml       text eol=lf
+*.txt       text eol=lf
+*.cfg       text eol=lf
+*.ini       text eol=lf
+LICENSE     text eol=lf
+
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.gif       binary
+*.ico       binary
+*.woff      binary
+*.woff2     binary
