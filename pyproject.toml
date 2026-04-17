@@ -1,0 +1,84 @@
+[build-system]
+requires = ["hatchling>=1.24.0"]
+build-backend = "hatchling.build"
+
+[project]
+name            = "flet-background-service"
+version         = "0.1.0"
+description     = "Flet extension wrapping flutter_background_service — persistent background execution on Android and iOS"
+readme          = { file = "README.md", content-type = "text/markdown" }
+license         = { file = "LICENSE" }
+requires-python = ">=3.12"
+authors         = [
+    { name = "Gizmoytb09", email = "" },
+]
+keywords = [
+    "flet", "flutter", "background", "service",
+    "android", "ios", "mobile",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Utilities",
+    "Typing :: Typed",
+]
+dependencies = [
+    "flet>=0.83.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.4.0",
+    "mypy>=1.10.0",
+    "pytest>=8.0.0",
+    "build>=1.2.0",
+    "twine>=5.0.0",
+]
+
+[project.urls]
+Homepage      = "https://github.com/Gizmoytb09/flet-background-service"
+Repository    = "https://github.com/Gizmoytb09/flet-background-service"
+Issues        = "https://github.com/Gizmoytb09/flet-background-service/issues"
+Changelog     = "https://github.com/Gizmoytb09/flet-background-service/blob/main/CHANGELOG.md"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/flet_background_service"]
+
+[tool.hatch.build.targets.sdist]
+# Include everything a downstream developer needs to build / audit the package.
+include = [
+    "src/",
+    "examples/",
+    "android_manifest_additions.xml",
+    "ios_info_plist_additions.xml",
+    "README.md",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "LICENSE",
+    "pyproject.toml",
+]
+
+[tool.ruff]
+target-version = "py312"
+line-length    = 88
+
+[tool.ruff.lint]
+select  = ["E", "W", "F", "I", "UP", "B", "C4", "RUF", "ANN"]
+ignore  = ["ANN101", "ANN102"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["flet_background_service"]
+
+[tool.mypy]
+python_version         = "3.12"
+strict                 = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

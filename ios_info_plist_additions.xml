@@ -1,0 +1,35 @@
+<!--
+  ios/Runner/Info.plist additions
+  ================================
+  Add the following keys to enable background modes on iOS.
+  Without these the iOS background handler will NEVER be called.
+-->
+
+<!-- Enable background fetch + processing (required for iOS background execution) -->
+<key>UIBackgroundModes</key>
+<array>
+    <string>fetch</string>
+    <string>processing</string>
+</array>
+
+<!-- BGTaskScheduler permitted identifiers (iOS 13+) -->
+<!-- flutter_background_service uses this task ID internally -->
+<key>BGTaskSchedulerPermittedIdentifiers</key>
+<array>
+    <string>dev.flutter.background_service</string>
+</array>
+
+<!--
+  iOS note
+  ─────────
+  Even with these keys, Apple restricts when background tasks run.
+  The OS decides the actual frequency — typically every 15–30 minutes at best.
+  For continuous sensor reading (SlapPhone), the app must be in the FOREGROUND.
+  
+  The background handler (_onIosBackground) is useful for:
+  - Syncing data when the user hasn't opened the app recently
+  - Updating notification content
+  - Light processing tasks
+  
+  It is NOT suitable for continuous accelerometer listening on iOS.
+-->

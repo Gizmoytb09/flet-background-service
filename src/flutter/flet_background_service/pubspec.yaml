@@ -1,0 +1,18 @@
+name: flet_background_service
+description: >
+  Flet extension wrapping flutter_background_service.
+  Provides persistent background execution on Android and iOS
+  from a pure-Python Flet application.
+version: 0.1.0
+homepage: https://github.com/yourorg/flet-background-service
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+  flutter: ">=3.22.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flet: ">=0.83.0"
+  flutter_background_service: "^5.0.9"
+  flutter_local_notifications: "^18.0.0"

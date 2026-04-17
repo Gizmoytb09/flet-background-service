@@ -1,0 +1,49 @@
+<!--
+  android/app/src/main/AndroidManifest.xml additions
+  ====================================================
+  Add ALL of the following inside the <manifest> and <application> tags.
+  These are REQUIRED for flutter_background_service to work on Android.
+-->
+
+<!-- ── Permissions (inside <manifest> tag) ────────────────────────────────── -->
+
+<!-- Required: run a foreground service -->
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+<!-- Required on Android 14+ for connectedDevice foreground service type -->
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE" />
+
+<!-- Add whichever type matches your AndroidConfig.foreground_service_type:  -->
+<!-- android.permission.FOREGROUND_SERVICE_LOCATION        → location        -->
+<!-- android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK  → mediaPlayback   -->
+<!-- android.permission.FOREGROUND_SERVICE_DATA_SYNC       → dataSync        -->
+<!-- android.permission.FOREGROUND_SERVICE_HEALTH          → health          -->
+
+<!-- Required: restart service after device reboot (if auto_start_on_boot=True) -->
+<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+<!-- Required: prevent battery optimisation from killing the service -->
+<uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+
+<!-- Required on Android 13+ to show the foreground notification -->
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+
+<!-- ── Service declaration (inside <application> tag) ─────────────────────── -->
+
+<service
+    android:name="id.flutter.flutter_background_service.BackgroundService"
+    android:foregroundServiceType="connectedDevice"
+    android:exported="false" />
+
+<!--
+  Change foregroundServiceType to match your use case:
+    connectedDevice  → sensors / Bluetooth (SlapPhone accelerometer)
+    location         → GPS
+    mediaPlayback    → audio/video
+    dataSync         → data uploads
+    health           → fitness tracking
+    
+  Must match the value passed to AndroidConfig.foreground_service_type
+  in Python AND the permission declared above.
+-->
