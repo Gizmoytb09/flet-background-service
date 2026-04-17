@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from _service import BackgroundService
-from _types import (
+from ._service import BackgroundService
+from ._types import (
     AndroidConfig,
     ForegroundServiceType,
     IOSConfig,
@@ -9,14 +9,13 @@ from _types import (
     ServiceStatus,
 )
 
-
 __all__: list[str] = [
-    "BackgroundService",
     "AndroidConfig",
+    "BackgroundService",
+    "ForegroundServiceType",
     "IOSConfig",
     "ServiceEvent",
     "ServiceStatus",
-    "ForegroundServiceType",
 ]
 
 __version__ = "0.1.0"

@@ -27,7 +27,7 @@ def main(page: ft.Page) -> None:
 
     def log(msg: str) -> None:
         log_list.controls.append(
-            ft.Text(f"› {msg}", size=11, font_family="monospace")
+            ft.Text(f"> {msg}", size=11, font_family="monospace")
         )
         page.update()
 
@@ -153,7 +153,10 @@ def main(page: ft.Page) -> None:
                         ft.ElevatedButton("Stop",                on_click=btn_stop),
                         ft.OutlinedButton("Ping",                on_click=btn_ping),
                         ft.OutlinedButton("Send custom event",   on_click=btn_send),
-                        ft.TextButton("Update notification",     on_click=btn_update_notif),
+                        ft.TextButton(
+                            "Update notification",
+                            on_click=btn_update_notif,
+                        ),
                     ],
                 ),
                 ft.Divider(),

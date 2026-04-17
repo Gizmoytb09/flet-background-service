@@ -2,13 +2,10 @@ from __future__ import annotations
 
 import json
 from collections.abc import Callable
-from typing import Optional
 
 import flet as ft
 
-
-
-from ._types import AndroidConfig, IOSConfig, ServiceEvent, ServiceStatus
+from ._types import AndroidConfig, IOSConfig, ServiceEvent
 
 
 @ft.control("flet_background_service")
@@ -57,11 +54,11 @@ class BackgroundService(ft.Service):
         ft.app(main)
     """
 
-    # Reset after each dispatch so a later unrelated update() doesn't re-fire the command.
-    _command: Optional[str] = None
-    _payload: Optional[str] = None
+    # Reset after each dispatch so a later update() doesn't re-fire the command.
+    _command: str | None = None
+    _payload: str | None = None
 
-    on_event: Optional[Callable[[ServiceEvent], None]] = None
+    on_event: Callable[[ServiceEvent], None] | None = None
 
 
     def _get_control_name(self) -> str:
@@ -178,4 +175,4 @@ class BackgroundService(ft.Service):
         if self.on_event is None:
             return
         raw = e.data if isinstance(e.data, dict) else {}
-        self.on_event(ServiceEvent.from_raw(raw))
+        self.on_event(ServiceEvent.from_raw(raw))

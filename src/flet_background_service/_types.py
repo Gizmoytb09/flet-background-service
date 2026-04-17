@@ -50,7 +50,7 @@ class ServiceEvent:
     payload: dict = field(default_factory=dict)
 
     @classmethod
-    def from_raw(cls, data: dict) -> "ServiceEvent":
+    def from_raw(cls, data: dict) -> ServiceEvent:
         raw_type = data.get("type", "unknown")
         try:
             status = ServiceStatus(raw_type)
@@ -92,7 +92,9 @@ class AndroidConfig:
 
     is_foreground_mode:           bool               = True
     auto_start_on_boot:           bool               = False
-    foreground_service_type:      ForegroundServiceType = ForegroundServiceType.CONNECTED_DEVICE
+    foreground_service_type: ForegroundServiceType = (
+        ForegroundServiceType.CONNECTED_DEVICE
+    )
     notification_channel_id:      str                = "flet_bg_service"
     notification_channel_name:    str                = "Background Service"
     notification_id:              int                = 888
@@ -132,4 +134,4 @@ class IOSConfig:
     auto_start: bool = False
 
     def to_dict(self) -> dict:
-        return {"autoStart": self.auto_start}
+        return {"autoStart": self.auto_start}
